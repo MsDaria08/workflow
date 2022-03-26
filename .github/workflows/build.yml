@@ -4,6 +4,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+
     steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: Run cmake --version
+        shell: bash
+        run: |
+          VERSION=`cmake --version`
+          echo $VERSION
       - name: build
-        run: echo username is ${{ inputs.username }}
+        shell: bash
+        run: |
+          cmake -H. -B_build
+          cmake --build _build
